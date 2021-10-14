@@ -3,4 +3,6 @@ Sinaplot implementation in Python adapted from https://github.com/mparker2/seabo
 
 Adapted to include a boxplot in the middle of the sinaplot.
 
-Ugly implementation for now: ```showboxplot=True, boxplotdata=data``` in which ```data``` is a python list of numpy arrays or pandas series.
+Difference in implementation: ```showboxplot=True``` to draw boxplots in the sinaplots.
+
+example use: ```sinaplot(x='allele', y=value, data=df, showboxplot=True, point_size=1, width=0.95, scale='area', color='gray')```
