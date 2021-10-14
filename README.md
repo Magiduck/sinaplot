@@ -3,4 +3,4 @@ Sinaplot implementation in Python adapted from https://github.com/mparker2/seabo
 
 Adapted to include a boxplot in the middle of the sinaplot.
 
-Ugly implementation for now: ```showboxplot=True, boxplotdata=data``` in which ```boxplotdata=data``` is a python list of numpy arrays or pandas series.
+Ugly implementation for now: ```showboxplot=True, boxplotdata=data``` in which ```data``` is a python list of numpy arrays or pandas series.
