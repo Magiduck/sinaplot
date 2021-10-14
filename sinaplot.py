@@ -124,7 +124,7 @@ def sinaplot(x=None, y=None, hue=None, data=None, order=None, hue_order=None,
              width=.8, split=False, dodge=True, orient=None,
              linewidth=1, color=None, palette=None, saturation=.75, violin_facealpha=0.25,
              point_linewidth=None, point_size=5, point_edgecolor="none", point_facealpha=1,
-             legend=True, random_state=None, ax=None, showboxplot=True, boxplotdata=None, **kwargs):
+             legend=True, random_state=None, ax=None, showboxplot=True, **kwargs):
     plotter = _SinaPlotter(x, y, hue, data, order, hue_order,
                            bw, cut, scale, scale_hue, gridsize,
                            width, inner, split, dodge, orient, linewidth,
@@ -145,16 +145,15 @@ def sinaplot(x=None, y=None, hue=None, data=None, order=None, hue_order=None,
     if ax is None:
         ax = plt.gca()
 
-    try:
-        if showboxplot:
-            bplot = ax.boxplot(boxplotdata, positions=np.arange(0, len(boxplotdata), 1),
-                               patch_artist=True, widths=0.02, showfliers=False, showcaps=False)
-            for patch in bplot['boxes']:
-                patch.set_facecolor((0, 0, 0))
-            for patch in bplot['medians']:
-                patch.set_color('white')
-    except TypeError:
-        print("Please provide data for boxplot")
+    if showboxplot:
+        values = data[x].unique()
+        data = [data[data[x] == value][y].values for value in values]
+        bplot = ax.boxplot(data, positions=np.arange(0, len(data), 1),
+                           patch_artist=True, widths=0.02, showfliers=False, showcaps=False)
+        for patch in bplot['boxes']:
+            patch.set_facecolor((0, 0, 0))
+        for patch in bplot['medians']:
+            patch.set_color('white')
 
     plotter.plot(ax, kwargs)
     if not legend:
