@@ -146,7 +146,7 @@ def sinaplot(x=None, y=None, hue=None, data=None, order=None, hue_order=None,
         ax = plt.gca()
 
     if showboxplot:
-        values = data[x].unique()
+        values = np.sort(data[x].unique())
         data = [data[data[x] == value][y].values for value in values]
         bplot = ax.boxplot(data, positions=np.arange(0, len(data), 1),
                            patch_artist=True, widths=0.02, showfliers=False, showcaps=False)
